@@ -1,0 +1,11 @@
+env:
+  global:
+  - TIMEOUT=1000
+  - secure: UDUUydSwTBwOfJlDqp2fbhn85RoHKfyUBC/7TR3cr2rDdleUWdYL5od1yNVswiKUkn3pKIuxHjABjB9AVgYDsoilMx2LBN4Hgvnx1gdFOdIbJ7bTBAwmxi3zP6iL6VrXERhx+/BWzefp4p+2zTv1bMdkcAwAC25HcfCLqFdLZMrxFgpwTcu6iwNBPxlN/6UmOrM9hZ9JxagtNJYhaH8S84BfJrUqvKbC74BfVk2PuHLNwEj7Bz5B0uM8oOEk7o0jVvycvL5C5ejhkei4qN7FhU8PnJhNKXGcXZHZu48EXXANwLs3PqCTc96aK3dDN0YY4VVeLZnAengKe4ORYyTao173Tx0wdUGSnPUDsu1H8fVEd/TbwkQMqdSj0k4rh2YcPt/TKQtmDEchnit+QNTbn91iFhQQVfYTPQ7I8soJnxT07g/obKBM7acZFp9jMGFnR6jeiAXuSoX9d/YASh15CLQjIdiAU3YV2Vole2ooGXMbYjllLiXkirb9PpO0ZOwZOUq+QRaNHVwR7Zw4HjL1J9DPRiHXY7hXWGH8jRNF7jpWLwQpxvJhz3URrnmL04kEJkyAYEI+kSv/Dxc8KVqKnRoZ6z43rvV8nuLKBlTaetETTx6LqpnI7H/fWDulWuymtfsy119MdLT0Y2xPTzfFCWWKxCzhsIUKYIh1f8qMq94=
+before_script:
+  - npm install -g gulp ionic@beta cordova
+  - ionic login -e karlstoney@gmail.com -p $IONIC_PASSWORD
+script:
+  - gulp build
+after_script:
+  - ionic upload
