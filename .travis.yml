@@ -12,5 +12,4 @@ before_script:
   - ionic login -e karlstoney@gmail.com -p $IONIC_PASSWORD
 script:
   - gulp build
-after_script:
   - ionic upload
