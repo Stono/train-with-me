@@ -1,25 +1,18 @@
 language: node_js
 sudo: required
 services:
-  - docker
-node_js:
-  - "6.2.2"
+- docker
 env:
   global:
-  - TIMEOUT=1000
-  - CXX=g++-4.8
-  - secure: UDUUydSwTBwOfJlDqp2fbhn85RoHKfyUBC/7TR3cr2rDdleUWdYL5od1yNVswiKUkn3pKIuxHjABjB9AVgYDsoilMx2LBN4Hgvnx1gdFOdIbJ7bTBAwmxi3zP6iL6VrXERhx+/BWzefp4p+2zTv1bMdkcAwAC25HcfCLqFdLZMrxFgpwTcu6iwNBPxlN/6UmOrM9hZ9JxagtNJYhaH8S84BfJrUqvKbC74BfVk2PuHLNwEj7Bz5B0uM8oOEk7o0jVvycvL5C5ejhkei4qN7FhU8PnJhNKXGcXZHZu48EXXANwLs3PqCTc96aK3dDN0YY4VVeLZnAengKe4ORYyTao173Tx0wdUGSnPUDsu1H8fVEd/TbwkQMqdSj0k4rh2YcPt/TKQtmDEchnit+QNTbn91iFhQQVfYTPQ7I8soJnxT07g/obKBM7acZFp9jMGFnR6jeiAXuSoX9d/YASh15CLQjIdiAU3YV2Vole2ooGXMbYjllLiXkirb9PpO0ZOwZOUq+QRaNHVwR7Zw4HjL1J9DPRiHXY7hXWGH8jRNF7jpWLwQpxvJhz3URrnmL04kEJkyAYEI+kSv/Dxc8KVqKnRoZ6z43rvV8nuLKBlTaetETTx6LqpnI7H/fWDulWuymtfsy119MdLT0Y2xPTzfFCWWKxCzhsIUKYIh1f8qMq94=
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-install:
-  - npm install -g gulp ionic@beta cordova
-  - npm install
+  - CONTAINER_NAME=trainwithme/app:TRAVIS_BUILD_NUMBER
+  - DOCKER_EMAIL=karl@jambr.co.uk
+  - DOCKER_USER=stono
+  - IONIC_EMAIL=karlstoney@gmail.com
+  - secure: UDUUydSwTBwOfJlDqp2fbhn85RoHKfyUBC/7TR3cr2rDdleUWdYL5od1yNVswiKUkn3pKIuxHjABjB9AVgYDsoilMx2LBN4Hgvnx1gdFOdIbJ7bTBAwmxi3zP6iL6VrXERhx+/BWzefp4p+2zTv1bMdkcAwAC25HcfCLqFdLZMrxFgpwTcu6iwNBPxlN/6UmOrM9hZ9JxagtNJYhaH8S84BfJrUqvKbC74BfVk2PuHLNwEj7Bz5B0uM8oOEk7o0jVvycvL5C5ejhkei4qN7FhU8PnJhNKXGcXZHZu48EXXANwLs3PqCTc96aK3dDN0YY4VVeLZnAengKe4ORYyTao173Tx0wdUGSnPUDsu1H8fVEd/TbwkQMqdSj0k4rh2YcPt/TKQtmDEchnit+QNTbn91iFhQQVfYTPQ7I8soJnxT07g/obKBM7acZFp9jMGFnR6jeiAXuSoX9d/YASh15CLQjIdiAU3YV2Vole2ooGXMbYjllLiXkirb9PpO0ZOwZOUq+QRaNHVwR7Zw4HjL1J9DPRiHXY7hXWGH8jRNF7jpWLwQpxvJhz3URrnmL04kEJkyAYEI+kSv/Dxc8KVqKnRoZ6z43rvV8nuLKBlTaetETTx6LqpnI7H/fWDulWuymtfsy119MdLT0Y2xPTzfFCWWKxCzhsIUKYIh1f8qMq94= # IONIC_PASSWORD
+  - secure: k23K4laiwOUmIVOItgt8v7hMsc8CGlNrwZx/Tw6tNAcp9NbZ66M/ABtNq8zW3/wd9mcu1gfcaHYYJ78TEQ+qqiZY4zgGmVEoFPV11RVEaenTjskNmsLt5rFYn5rngOcPlK28j5h3GfnMaoM0wCjOqP9oo6bxLCIPpEgIN/c4uusvZKvktKmu2LIVxm3yz+Gv7si/cDXejNoXBa2xiAE18uE4jcAHuViAAX9P2loz9q8QlCWlC0wi96JvcsCCZBsIjr5dAk7oSF0XHYsSjgxcOTBCDr6vbAHRp89l/Q7mY/dLRbsWMSoNcLmiHAg/vLqTJFiJUB2TTmuYZhf2GbAdFj3juIRhQHUfQArZkzbYxE0KBW8CjuLqzx+KZS70+CKg1GAZ/oo5E20Mzoegbc1MOSE14Xnv7cPWdBQmpYtAG0HLnAQI/BG4cjZFycK+MNHdrv7/274YrUYRbMVBHhllKn+mRnbaU3oFlvStjc4OhRA+WGA08FuO+9j/VN1mBgp1QkfzFzLR+lGTN38TQNYzht1c7JJfB0paJV1w9iHZbE6+D/h3CIRrbos9ceclde1baIW0rLgRhkYUBzb0AYeRLfqUSoyLuchYpFBTpsV7b8mN4uSqwADAj4BF5MJfnh896EDkwjPwqQqw4xVADpE+rVP4HtKRMk/ZEN7NvktvMcc= # DOCKER_PASS
 before_script:
-  - ionic login -e karlstoney@gmail.com -p $IONIC_PASSWORD
+- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 script:
-  - gulp build
-  - ionic upload
+- docker build -t $CONTAINER_NAME --build-arg IONIC_EMAIL=$IONIC_EMAIL --build-arg IONIC_PASSWORD=$IONIC_PASSWORD .
+after_success:
+- docker run --rm $CONTAINER_NAME ionic upload
