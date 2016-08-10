@@ -21,19 +21,19 @@ export class TutorialPage {
   constructor(public navCtrl: NavController, public menu: MenuController) {
     this.slides = [
       {
-        title: 'Welcome to <b>ICA</b>',
-        description: 'The <b>Ionic Conference App</b> is a practical preview of the Ionic Framework in action, and a demonstration of proper code use.',
-        image: 'img/ica-slidebox-img-1.png',
+        title: 'Welcome to <b>TWM</b>',
+        description: '<b>Train With Me</b> is a central place for you to connect with your fellow athletes.',
+        image: 'img/sports/basketball.png',
       },
       {
-        title: 'What is Ionic?',
-        description: '<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.',
-        image: 'img/ica-slidebox-img-2.png',
+        title: 'Track Statistics',
+        description: 'You can track your statistics, personal bests, weight, height and so on.',
+        image: 'img/sports/running.png',
       },
       {
-        title: 'What is Ionic Platform?',
-        description: 'The <b>Ionic Platform</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.',
-        image: 'img/ica-slidebox-img-3.png',
+        title: 'Complete with Friends',
+        description: 'See how your friends are doing on similar activities, set challenges, compete as a team.',
+        image: 'img/sports/tennis.png',
       }
     ];
   }
