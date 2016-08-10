@@ -16,3 +16,16 @@ checkstyle-result.xml
 coverage.*
 junit.xml
 shippable/
+
+# ionic stuff
+www/build/
+.vscode/
+.idea/
+.versions/
+coverage/
+node_modules/
+tmp/
+temp/
+hooks/
+platforms/
+plugins/

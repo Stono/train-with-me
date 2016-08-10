@@ -1,14 +1,21 @@
 FROM jambr/sn.nodejs:latest
-RUN npm install -g gulp ionic@beta cordova
 
-COPY package.json /app/
-RUN npm install
+# Install our required dependencies
+RUN npm install -g gulp ionic@2.0.0-beta.36 cordova@6.3.0
 
-COPY . /app/
-
+# Login to Ionic
 ARG IONIC_EMAIL=
 ARG IONIC_PASSWORD=
 RUN ionic login -e $IONIC_EMAIL -p $IONIC_PASSWORD
+
+# Cache package json changes
+COPY package.json /app/
+RUN npm install
+
+# Copy our app
+COPY . /app/
+
+# Build the deployment
 RUN gulp build
 
 CMD ["/bin/true"]
