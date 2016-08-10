@@ -20,6 +20,8 @@
 
 @import "../pages/map/map";
 
+@import "../pages/blank/blank";
+
 @import "../pages/schedule/schedule";
 
 @import "../pages/schedule-filter/schedule-filter";
@@ -29,3 +31,11 @@
 @import "../pages/speaker-list/speaker-list";
 
 @import "../pages/tutorial/tutorial";
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

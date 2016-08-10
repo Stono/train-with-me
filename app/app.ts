@@ -7,6 +7,7 @@ import { AccountPage } from './pages/account/account';
 import { ConferenceData } from './providers/conference-data';
 import { LoginPage } from './pages/login/login';
 import { TabsPage } from './pages/tabs/tabs';
+import { BlankPage } from './pages/blank/blank';
 import { TutorialPage } from './pages/tutorial/tutorial';
 import { UserData } from './providers/user-data';
 
@@ -35,9 +36,9 @@ class ConferenceApp {
     { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
   ];
   loggedInPages: PageObj[] = [
-    { title: 'Account', component: AccountPage, icon: 'person' },
-    { title: 'Friends', component: AccountPage, icon: 'people' },
-    { title: 'Logout', component: TabsPage, icon: 'log-out' }
+    { title: 'Account', component: BlankPage, icon: 'person' }, // AccountPage
+    { title: 'Friends', component: BlankPage, icon: 'people' }, // SpeakerListPage
+    { title: 'Logout', component: TabsPage, icon: 'log-out' } // TabsPage
   ];
   loggedOutPages: PageObj[] = [
     { title: 'Login', component: LoginPage, icon: 'log-in' }
