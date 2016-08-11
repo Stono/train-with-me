@@ -14,4 +14,4 @@ before_script:
 script:
 - docker build -t $CONTAINER_NAME --build-arg IONIC_EMAIL=$IONIC_EMAIL --build-arg IONIC_PASSWORD=$IONIC_PASSWORD .
 after_success:
-- docker run --rm $CONTAINER_NAME ionic upload
+- docker run --rm $CONTAINER_NAME ionic upload --note "https://travis-ci.org/Stono/train-with-me/builds/$TRAVIS_JOB_ID"
