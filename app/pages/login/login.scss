@@ -8,3 +8,16 @@
 .login-page .logo img {
   max-width: 150px;
 }
+
+.facebook-sign-in
+{
+  border-radius: 4px;
+  font-weight: 500;
+  color: #FFF;
+  background-color: color($colors, facebook);
+  border-color: darken(color($colors, facebook), 2);
+  padding: 10px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}

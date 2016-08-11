@@ -36,7 +36,7 @@ class ConferenceApp {
     { title: 'About', component: TabsPage, index: 3, icon: 'information-circle' },
   ];
   loggedInPages: PageObj[] = [
-    { title: 'Account', component: BlankPage, icon: 'person' }, // AccountPage
+    { title: 'Account', component: AccountPage, icon: 'person' }, // AccountPage
     { title: 'Friends', component: BlankPage, icon: 'people' }, // SpeakerListPage
     { title: 'Logout', component: TabsPage, icon: 'log-out' } // TabsPage
   ];

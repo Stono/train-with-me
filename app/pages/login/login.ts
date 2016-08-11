@@ -5,6 +5,7 @@ import { NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { UserData } from '../../providers/user-data';
 
+declare var facebookConnectPlugin:any;
 
 @Component({
   templateUrl: 'build/pages/login/login.html'
@@ -15,12 +16,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public userData: UserData) { }
 
-  onLogin(form) {
-    this.submitted = true;
-
-    if (form.valid) {
-      this.userData.login(this.login.username);
-      this.navCtrl.push(TabsPage);
-    }
+  facebookSignIn() {
+      this.userData.loginWithFacebook();
   }
 }

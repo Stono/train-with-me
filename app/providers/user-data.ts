@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Facebook } from 'ionic-native';
 
 import { Events, LocalStorage, Storage } from 'ionic-angular';
-
 
 @Injectable()
 export class UserData {
@@ -9,7 +9,9 @@ export class UserData {
   HAS_LOGGED_IN = 'hasLoggedIn';
   storage = new Storage(LocalStorage);
 
-  constructor(public events: Events) {}
+  constructor(
+    public events: Events
+  ) {}
 
   hasFavorite(sessionName) {
     return (this._favorites.indexOf(sessionName) > -1);
@@ -30,6 +32,17 @@ export class UserData {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
     this.events.publish('user:login');
+  }
+
+  loginWithFacebook() {
+      console.log('logging in with facebook');
+      Facebook.login(['email', 'public_profile', 'user_friends']).then(() => {
+        Facebook.api('/me', ['public_profile']).then((result) => {
+          this.storage.set(this.HAS_LOGGED_IN, true);
+          this.setUsername(result.name);
+          this.events.publish('user:login');
+        });
+      });
   }
 
   logout() {
