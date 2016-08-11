@@ -43,7 +43,7 @@ export class UserData {
     let facebookUser;
 
     let loadPictureFromFacebook = () => {
-      this.facebook.api('/' + facebookUser.id + '/picture?type=large', ['public_profile']).then(result => {
+      this.facebook.api('/' + facebookUser.id + '/picture?type=large&redirect=false', ['public_profile']).then(result => {
         facebookUser.picture = result.data.url;
         this.login(facebookUser.email, facebookUser.name, facebookUser.picture);
       });

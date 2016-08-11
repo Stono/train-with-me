@@ -28,7 +28,7 @@ export class MockFacebook {
           'name': 'Karl Stoney'
         };
         break;
-      case '/514674601/picture?type=large':
+      case '/514674601/picture?type=large&redirect=false':
         mockData = {
           'data': {
             'is_silhouette': false,
