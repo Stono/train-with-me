@@ -41,17 +41,35 @@
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
     {
-      "locator": "https://github.com/VersoSolutions/CordovaClipboard",
-      "id": "com.verso.cordova.clipboard"
-    },
-    {
       "locator": "https://github.com/apache/cordova-plugin-splashscreen.git",
       "id": "cordova-plugin-splashscreen"
+    },
+    {
+      "id": "cordova-plugin-facebook4",
+      "locator": "cordova-plugin-facebook4",
+      "variables": {
+        "APP_ID": "174213012999385",
+        "APP_NAME": "TrainWithMe"
+      }
+    },
+    {
+      "locator": "https://github.com/VersoSolutions/CordovaClipboard",
+      "id": "com.verso.cordova.clipboard"
     },
     "cordova-plugin-crosswalk-webview"
   ],
   "cordovaPlatforms": [
     "ios",
-    "android"
+    "android",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    },
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
   ]
 }

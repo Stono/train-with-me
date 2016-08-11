@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Facebook } from 'ionic-native';
 
-import { Events, LocalStorage, Storage } from 'ionic-angular';
+import { Events, LocalStorage, Storage, Platform } from 'ionic-angular';
 
 @Injectable()
 export class UserData {
@@ -10,7 +10,8 @@ export class UserData {
   storage = new Storage(LocalStorage);
 
   constructor(
-    public events: Events
+    public events: Events,
+    public platform: Platform
   ) {}
 
   hasFavorite(sessionName) {
@@ -35,14 +36,17 @@ export class UserData {
   }
 
   loginWithFacebook() {
-      console.log('logging in with facebook');
-      Facebook.login(['email', 'public_profile', 'user_friends']).then(() => {
-        Facebook.api('/me', ['public_profile']).then((result) => {
-          this.storage.set(this.HAS_LOGGED_IN, true);
-          this.setUsername(result.name);
-          this.events.publish('user:login');
-        });
+    if (!this.platform.is('cordova')) {
+        return this.login('Karl Stoney');
+    }
+    // TODO: Only allow this login when on mobile (as it's native)
+    console.log('logging in with facebook');
+    Facebook.login(['email', 'public_profile', 'user_friends']).then(() => {
+      // TODO: Validate status not logged in.
+      Facebook.api('/me', ['id', 'email', 'name']).then(result => {
+        this.login(result.name);
       });
+    });
   }
 
   logout() {
@@ -56,14 +60,14 @@ export class UserData {
   }
 
   getUsername() {
-    return this.storage.get('username').then((value) => {
+    return this.storage.get('username').then(value => {
       return value;
     });
   }
 
   // return a promise
   hasLoggedIn() {
-    return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
+    return this.storage.get(this.HAS_LOGGED_IN).then(value => {
       return value;
     });
   }
