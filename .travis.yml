@@ -1,9 +1,6 @@
 sudo: required
 services:
   - docker
-cache:
-  directories:
-  - docker
 env:
   global:
     - CONTAINER_NAME=trainwithme/app:TRAVIS_BUILD_NUMBER
@@ -14,9 +11,7 @@ env:
     - secure: k23K4laiwOUmIVOItgt8v7hMsc8CGlNrwZx/Tw6tNAcp9NbZ66M/ABtNq8zW3/wd9mcu1gfcaHYYJ78TEQ+qqiZY4zgGmVEoFPV11RVEaenTjskNmsLt5rFYn5rngOcPlK28j5h3GfnMaoM0wCjOqP9oo6bxLCIPpEgIN/c4uusvZKvktKmu2LIVxm3yz+Gv7si/cDXejNoXBa2xiAE18uE4jcAHuViAAX9P2loz9q8QlCWlC0wi96JvcsCCZBsIjr5dAk7oSF0XHYsSjgxcOTBCDr6vbAHRp89l/Q7mY/dLRbsWMSoNcLmiHAg/vLqTJFiJUB2TTmuYZhf2GbAdFj3juIRhQHUfQArZkzbYxE0KBW8CjuLqzx+KZS70+CKg1GAZ/oo5E20Mzoegbc1MOSE14Xnv7cPWdBQmpYtAG0HLnAQI/BG4cjZFycK+MNHdrv7/274YrUYRbMVBHhllKn+mRnbaU3oFlvStjc4OhRA+WGA08FuO+9j/VN1mBgp1QkfzFzLR+lGTN38TQNYzht1c7JJfB0paJV1w9iHZbE6+D/h3CIRrbos9ceclde1baIW0rLgRhkYUBzb0AYeRLfqUSoyLuchYpFBTpsV7b8mN4uSqwADAj4BF5MJfnh896EDkwjPwqQqw4xVADpE+rVP4HtKRMk/ZEN7NvktvMcc= # DOCKER_PASS
 before_script:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-  - if [[ -e docker/image.tar ]]; then docker load -i docker/image.tar; fi
 script:
   - docker build -t $CONTAINER_NAME --build-arg IONIC_EMAIL=$IONIC_EMAIL --build-arg IONIC_PASSWORD=$IONIC_PASSWORD .
 after_success:
   - docker run --rm $CONTAINER_NAME ionic upload --note "https://travis-ci.org/Stono/train-with-me/builds/$TRAVIS_JOB_ID"
-  - docker save $CONTAINER_NAME > docker/image.tar
