@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { provide, Component, ViewChild, ExceptionHandler } from '@angular/core';
 
 import { Events, ionicBootstrap, MenuController, Nav, Platform } from 'ionic-angular';
 import { Splashscreen, StatusBar } from 'ionic-native';
@@ -10,6 +10,8 @@ import { TabsPage } from './pages/tabs/tabs';
 import { BlankPage } from './pages/blank/blank';
 import { TutorialPage } from './pages/tutorial/tutorial';
 import { UserData } from './providers/user-data';
+
+import { CustomExceptionHandler } from './providers/exception-handler';
 
 interface PageObj {
   title: string;
@@ -107,6 +109,7 @@ class ConferenceApp {
 }
 
 
+
 // Pass the main App component as the first argument
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument, see the docs for
@@ -116,4 +119,8 @@ class ConferenceApp {
 // See the theming docs for the default values:
 // http://ionicframework.com/docs/v2/theming/platform-specific-styles/
 
-ionicBootstrap(ConferenceApp, [ConferenceData, UserData], { });
+ionicBootstrap(ConferenceApp, [
+  provide(ExceptionHandler, { useClass: CustomExceptionHandler }),
+  ConferenceData,
+  UserData
+], {});
