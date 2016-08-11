@@ -31,19 +31,34 @@ export class UserData {
     }
   }
 
-  login(username) {
+  login(email, name, picture) {
     this.storage.set(this.HAS_LOGGED_IN, true);
-    this.setUsername(username);
+    this.setUsername(name);
+    this.setPicture(picture);
     this.events.publish('user:login');
   }
 
   loginWithFacebook() {
     console.log('logging in with facebook');
-    this.facebook.login(['email', 'public_profile', 'user_friends']).then(loginResult => {
+    let facebookUser;
+
+    let loadPictureFromFacebook = () => {
+      this.facebook.api('/' + facebookUser.id + '/picture?type=large', ['public_profile']).then(result => {
+        facebookUser.picture = result.data.url;
+        this.login(facebookUser.email, facebookUser.name, facebookUser.picture);
+      });
+    };
+
+    let loadProfileFromFacebook = () => {
+      this.facebook.api('/me?fields=id,email,name', ['public_profile', 'email']).then(result => {
+        facebookUser = result;
+        loadPictureFromFacebook();
+      });
+    };
+
+    let handleLoginResponse = loginResult => {
       if (loginResult.status === 'connected') {
-        this.facebook.api('/me', ['id', 'email', 'name']).then(result => {
-          this.login(result.name);
-        });
+        loadProfileFromFacebook();
       } else if (loginResult.status === 'not_authorized') {
         this.toast.create({
           message: 'Facebook authorizations rejected.',
@@ -57,7 +72,9 @@ export class UserData {
           duration: 3000
         }).present();
       }
-    });
+    };
+
+    this.facebook.login(['email', 'public_profile', 'user_friends']).then(handleLoginResponse);
   }
 
   logout() {
@@ -70,8 +87,18 @@ export class UserData {
     this.storage.set('username', username);
   }
 
+  setPicture(picture) {
+    this.storage.set('picture', picture);
+  }
+
   getUsername() {
     return this.storage.get('username').then(value => {
+      return value;
+    });
+  }
+
+  getPicture() {
+    return this.storage.get('picture').then(value => {
       return value;
     });
   }

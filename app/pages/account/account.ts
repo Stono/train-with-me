@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
 
 import { LoginPage } from '../login/login';
+import { BlankPage } from '../blank/blank';
 import { UserData } from '../../providers/user-data';
 
 
@@ -11,6 +12,7 @@ import { UserData } from '../../providers/user-data';
 })
 export class AccountPage {
   username: string;
+  picture: string;
 
   constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData) {
 
@@ -18,6 +20,7 @@ export class AccountPage {
 
   ngAfterViewInit() {
     this.getUsername();
+    this.getPicture();
   }
 
   updatePicture() {
@@ -51,8 +54,14 @@ export class AccountPage {
   }
 
   getUsername() {
-    this.userData.getUsername().then((username) => {
+    this.userData.getUsername().then(username => {
       this.username = username;
+    });
+  }
+
+  getPicture() {
+    this.userData.getPicture().then(picture => {
+      this.picture = picture;
     });
   }
 
@@ -63,5 +72,9 @@ export class AccountPage {
   logout() {
     this.userData.logout();
     this.nav.setRoot(LoginPage);
+  }
+
+  profile() {
+    this.nav.setRoot(BlankPage);
   }
 }
