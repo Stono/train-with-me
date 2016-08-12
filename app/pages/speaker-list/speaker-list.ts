@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { ActionSheet, ActionSheetController, NavController, Page } from 'ionic-angular';
 
-import { ConferenceData } from '../../providers/conference-data';
+import { ActivityFeed } from '../../providers/activity-feed';
 import { SessionDetailPage } from '../session-detail/session-detail';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
 
@@ -14,8 +14,8 @@ export class SpeakerListPage {
   actionSheet: ActionSheet;
   speakers = [];
 
-  constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, confData: ConferenceData) {
-    confData.getSpeakers().then(speakers => {
+  constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, activity: ActivityFeed) {
+    activity.getSpeakers().then(speakers => {
       this.speakers = speakers;
     });
   }

@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { UserData } from './user-data';
 
 @Injectable()
-export class ConferenceData {
+export class ActivityFeed {
   data: any;
 
   constructor(public http: Http, public user: UserData) {}

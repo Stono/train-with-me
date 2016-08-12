@@ -11,6 +11,7 @@ import { TutorialPage } from './pages/tutorial/tutorial';
 
 import { UserData } from './providers/user-data';
 import { CustomExceptionHandler } from './providers/exception-handler';
+import { ActivityFeed } from './providers/activity-feed';
 
 interface PageObj {
   title: string;
@@ -114,5 +115,5 @@ export class TrainWithMe {
 
 ionicBootstrap(TrainWithMe, [
   provide(ExceptionHandler, { useClass: CustomExceptionHandler }),
-  UserData
+  UserData, ActivityFeed
 ], {});

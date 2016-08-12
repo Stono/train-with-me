@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 
 import { AlertController, App, ItemSliding, List, ModalController, NavController } from 'ionic-angular';
 
-import { ConferenceData } from '../../providers/conference-data';
-import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
+import { ActivityFeed } from '../../providers/activity-feed';
+import { ActivityFilterPage } from '../activity-filter/activity-filter';
 import { SessionDetailPage } from '../session-detail/session-detail';
 import { UserData } from '../../providers/user-data';
 
@@ -11,7 +11,7 @@ import { UserData } from '../../providers/user-data';
 @Component({
   templateUrl: 'build/pages/schedule/schedule.html'
 })
-export class SchedulePage {
+export class ActivityPage {
   // the list is a child of the schedule page
   // @ViewChild('scheduleList') gets a reference to the list
   // with the variable #scheduleList, `read: List` tells it to return
@@ -30,7 +30,7 @@ export class SchedulePage {
     public app: App,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
-    public confData: ConferenceData,
+    public activity: ActivityFeed,
     public user: UserData
   ) {
 
@@ -48,14 +48,14 @@ export class SchedulePage {
     // Close any open sliding items when the schedule updates
     this.scheduleList && this.scheduleList.closeSlidingItems();
 
-    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(data => {
+    this.activity.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(data => {
       this.shownSessions = data.shownSessions;
       this.groups = data.groups;
     });
   }
 
   presentFilter() {
-    let modal = this.modalCtrl.create(ScheduleFilterPage, this.excludeTracks);
+    let modal = this.modalCtrl.create(ActivityFilterPage, this.excludeTracks);
     modal.present();
 
     modal.onDidDismiss((data: any[]) => {
