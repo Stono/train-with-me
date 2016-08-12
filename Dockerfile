@@ -2,7 +2,7 @@ FROM jambr/sn.nodejs:latest
 
 # Install tar
 RUN dnf -y -q --setopt=deltarpm=false update && \
-    dnf -y -q install tar bzip2 && \
+    dnf -y -q install tar bzip2 freetype fontconfig && \
     dnf -y -q clean all
 
 # PhantomJS
