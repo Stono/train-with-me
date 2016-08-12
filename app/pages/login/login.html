@@ -8,19 +8,35 @@
 </ion-header>
 
 <ion-content>
+  <div class="login_info">
+  <div>
+    <strong>Train With Me</strong> is designed to be a social application, therefore
+    we need you to login with a social provider.
+  </div>
+  <div>
+    In doing so, we will request some permissions, and we want to explain why we
+    and how we use that data.
+  </div>
+  <div>
+      <ul>
+          <li><strong>Email</strong>: We need your email to create a unique account for you.</li>
+          <li><strong>Profile</strong>: We use this to get your name and your picture.</li>
+          <li><strong>Friends</strong>: We use this to help you find other friends using TWM.</li>
+      </ul>
+  </div>
+  <div>
+      We take your privacy <strong>very</strong> seriously, so would like to assure you that
+      your data is only used to enhance your experience in this app, and never passed on to anyone
+      else without your explicit permission.
+  </div>
+</div>
 
-  <ion-list>
-    <div class="logo">
-      <img src="img/appicon.svg">
-    </div>
-
-    <form #loginForm="ngForm" novalidate>
-      <ion-row responsive-sm>
-        <ion-col class="footer">
-          <a class="facebook-sign-in" (click)="facebookSignIn()">Login with Facebook</a>
-        </ion-col>
-      </ion-row>
-    </form>
-  </ion-list>
+  <form #loginForm="ngForm" novalidate>
+    <ion-row responsive-sm>
+      <ion-col class="footer">
+        <a class="facebook-sign-in" (click)="facebookSignIn()">Login with Facebook</a>
+      </ion-col>
+    </ion-row>
+  </form>
 
 </ion-content>
