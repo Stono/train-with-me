@@ -1,7 +1,7 @@
 {
   "name": "train-with-me",
   "description": "Train with anyone, anywhere",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "https://github.com/Stono/train-with-me.git"
