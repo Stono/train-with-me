@@ -6,6 +6,12 @@
     "type": "git",
     "url": "https://github.com/Stono/train-with-me.git"
   },
+  "scripts": {
+    "karma": "gulp --gulpfile test/gulpfile.ts --cwd ./ karma-debug",
+    "postinstall": "ionic state restore && typings install && cp test/karma-static/*.html node_modules/karma/static",
+    "start": "ionic serve",
+    "test": "gulp --gulpfile test/gulpfile.ts --cwd ./ unit-test"
+  },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
@@ -24,9 +30,12 @@
     "zone.js": "0.6.12"
   },
   "devDependencies": {
+    "browserify-istanbul": "^2.0.0",
+    "codecov.io": "^0.1.6",
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-tslint": "^5.0.0",
+    "gulp-typescript": "^2.13.6",
     "gulp-watch": "4.3.5",
     "ionic-gulp-browserify-typescript": "^1.1.0",
     "ionic-gulp-fonts-copy": "^1.0.0",
@@ -34,8 +43,21 @@
     "ionic-gulp-sass-build": "^1.0.0",
     "ionic-gulp-scripts-copy": "^2.0.0",
     "ionic-gulp-tslint": "^1.0.0",
+    "isparta": "^4.0.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.2.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.1.0",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "phantomjs-prebuilt": "^2.1.11",
     "run-sequence": "1.1.5",
-    "tslint": "^3.10.1",
+    "traceur": "0.0.111",
+    "ts-node": "^1.2.2",
+    "tsify": "^1.0.3",
+    "tslint": "^3.14.0",
     "tslint-ionic-rules": "^0.0.3"
   },
   "cordovaPlugins": [
