@@ -7,6 +7,7 @@
     "url": "https://github.com/Stono/train-with-me.git"
   },
   "scripts": {
+    "clean": "git clean -d -x -f",
     "build": "./node_modules/gulp/bin/gulp.js build",
     "karma": "./node_modules/gulp/bin/gulp.js --gulpfile test/gulpfile.ts --cwd ./ karma-debug",
     "postinstall": "ionic state restore && typings install && cp test/karma-static/*.html node_modules/karma/static",
