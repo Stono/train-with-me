@@ -6,6 +6,12 @@
     "type": "git",
     "url": "https://github.com/Stono/train-with-me.git"
   },
+  "scripts": {
+    "karma": "gulp --gulpfile test/gulpfile.ts --cwd ./ karma-debug",
+    "postinstall": "ionic state restore && typings install && cp test/karma-static/*.html node_modules/karma/static",
+    "start": "ionic serve",
+    "test": "gulp --gulpfile test/gulpfile.ts --cwd ./ unit-test"
+  },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",

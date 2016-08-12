@@ -22,7 +22,11 @@ class MockUserData {
     });
   }
 }
-class MockMenu {}
+class MockMenu {
+  public enable(): any {
+    return true;
+  }
+}
 class MockEvents {
   public subscribe(): any {
     return new Promise(resolve => {
