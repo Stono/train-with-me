@@ -1,14 +1,5 @@
 FROM jambr/sn.nodejs:latest
 
-# Install our required dependencies
-RUN npm install -g gulp ionic@2.0.0-beta.36 cordova@6.3.0
-
-# Login to Ionic
-ARG IONIC_EMAIL=
-ARG IONIC_PASSWORD=
-RUN cordova telemetry off
-RUN ionic login -e $IONIC_EMAIL -p $IONIC_PASSWORD
-
 # Install tar
 RUN dnf -y update && \
     dnf -y install tar bzip2 && \
@@ -24,6 +15,15 @@ RUN wget --quiet https://github.com/Medium/phantomjs/releases/download/v2.1.1/$P
     && mv $PHANTOM_JS /usr/local/share \
     && ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin \
     && rm $PHANTOM_JS.tar.bz2
+
+# Install our required dependencies
+RUN npm install -g gulp ionic@2.0.0-beta.36 cordova@6.3.0
+
+# Login to Ionic
+ARG IONIC_EMAIL=
+ARG IONIC_PASSWORD=
+RUN cordova telemetry off
+RUN ionic login -e $IONIC_EMAIL -p $IONIC_PASSWORD
 
 # Cache package json changes
 COPY package.json /app/
