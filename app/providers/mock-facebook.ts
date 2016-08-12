@@ -8,7 +8,7 @@ export class MockFacebook {
       status: 'connected',
       authResponse: {
         session_key: true,
-        accessToken: 'kgkh3g42kh4g23kh4g2kh34g2kg4k2h4gkh3g4k2h4gk23h4gk2h34gk234gk2h34AndSoOn',
+        accessToken: 'doesnt-matter',
         expiresIn: 5183979,
         sig: 'meh',
         secret: 'meh',
@@ -25,7 +25,7 @@ export class MockFacebook {
         mockData = {
           'id': '514674601',
           'email': 'karlstoney@googlemail.com',
-          'name': 'Karl Stoney'
+          'name': 'Karl Stoney (Test)'
         };
         break;
       case '/514674601/picture?type=large&redirect=false':

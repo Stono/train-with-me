@@ -4,13 +4,12 @@ import { Events, ionicBootstrap, MenuController, Nav, Platform } from 'ionic-ang
 import { Splashscreen, StatusBar } from 'ionic-native';
 
 import { AccountPage } from './pages/account/account';
-import { ConferenceData } from './providers/conference-data';
 import { LoginPage } from './pages/login/login';
 import { TabsPage } from './pages/tabs/tabs';
 import { BlankPage } from './pages/blank/blank';
 import { TutorialPage } from './pages/tutorial/tutorial';
-import { UserData } from './providers/user-data';
 
+import { UserData } from './providers/user-data';
 import { CustomExceptionHandler } from './providers/exception-handler';
 
 interface PageObj {
@@ -23,7 +22,7 @@ interface PageObj {
 @Component({
   templateUrl: 'build/app.html'
 })
-class ConferenceApp {
+export class TrainWithMe {
   // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
@@ -51,17 +50,13 @@ class ConferenceApp {
     public events: Events,
     public userData: UserData,
     public menu: MenuController,
-    platform: Platform,
-    confData: ConferenceData
+    platform: Platform
   ) {
     // Call any initial plugins when ready
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
-
-    // load the conference data
-    confData.load();
 
     // decide which menu items should be hidden by current login status stored in local storage
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
@@ -108,8 +103,6 @@ class ConferenceApp {
   }
 }
 
-
-
 // Pass the main App component as the first argument
 // Pass any providers for your app in the second argument
 // Set any config for your app as the third argument, see the docs for
@@ -119,8 +112,7 @@ class ConferenceApp {
 // See the theming docs for the default values:
 // http://ionicframework.com/docs/v2/theming/platform-specific-styles/
 
-ionicBootstrap(ConferenceApp, [
+ionicBootstrap(TrainWithMe, [
   provide(ExceptionHandler, { useClass: CustomExceptionHandler }),
-  ConferenceData,
   UserData
 ], {});
