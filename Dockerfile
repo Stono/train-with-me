@@ -1,9 +1,9 @@
 FROM jambr/sn.nodejs:latest
 
 # Install tar
-RUN dnf -y update && \
-    dnf -y install tar bzip2 && \
-    dnf -y clean all
+RUN dnf -y -q update && \
+    dnf -y -q install tar bzip2 && \
+    dnf -y -q clean all
 
 # PhantomJS
 ENV PHANTOM_JS phantomjs-2.1.1-linux-x86_64
@@ -17,7 +17,7 @@ RUN wget --quiet https://github.com/Medium/phantomjs/releases/download/v2.1.1/$P
     && rm $PHANTOM_JS.tar.bz2
 
 # Install our required dependencies
-RUN npm install -g ionic@2.0.0-beta.36 cordova@6.3.0
+RUN npm install -g --no-summary --quiet ionic@2.0.0-beta.36 cordova@6.3.0
 
 # Login to Ionic
 ARG IONIC_EMAIL=
@@ -27,7 +27,7 @@ RUN ionic login -e $IONIC_EMAIL -p $IONIC_PASSWORD
 
 # Cache package json changes
 COPY package.json /app/
-RUN npm install
+RUN npm install --no-summary --quiet
 
 # Copy our app
 COPY . /app/
