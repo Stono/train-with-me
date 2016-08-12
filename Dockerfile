@@ -17,7 +17,7 @@ RUN wget --quiet https://github.com/Medium/phantomjs/releases/download/v2.1.1/$P
     && rm $PHANTOM_JS.tar.bz2
 
 # Install our required dependencies
-RUN npm install -g gulp ionic@2.0.0-beta.36 cordova@6.3.0
+RUN npm install -g ionic@2.0.0-beta.36 cordova@6.3.0
 
 # Login to Ionic
 ARG IONIC_EMAIL=
@@ -33,6 +33,6 @@ RUN npm install
 COPY . /app/
 
 # Build the deployment
-RUN gulp build
+RUN npm run build
 
 CMD ["/bin/true"]
